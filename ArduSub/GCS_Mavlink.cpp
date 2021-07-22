@@ -97,6 +97,8 @@ int16_t GCS_MAVLINK_Sub::vfr_hud_throttle() const
 }
 
 // Work around to get temperature sensor data out
+#if CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_CHIBIOS_CUAV_X7
+#else
 void GCS_MAVLINK_Sub::send_scaled_pressure3()
 {
     if (!sub.celsius.healthy()) {
@@ -110,7 +112,7 @@ void GCS_MAVLINK_Sub::send_scaled_pressure3()
         sub.celsius.temperature() * 100,
         0); // TODO: use differential pressure temperature
 }
-
+#endif
 bool GCS_MAVLINK_Sub::send_info()
 {
     // Just do this all at once, hopefully the hard-wire telemetry requirement means this is ok
