@@ -273,6 +273,14 @@ void AP_Motors6DOF::output_to_motors()
     // send output to each motor
     for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
         if (motor_enabled[i]) {
+            if (_spool_state == SpoolState::SHUT_DOWN) {
+                // in shutdown mode, use PWM 0 or minimum PWM
+                if (_disarm_disable_pwm && !armed()) {
+                    motor_out[i] = 0;
+                } else {
+                    motor_out[i] = 1500;
+                }
+            }
             rc_write(i, motor_out[i]);
         }
     }
