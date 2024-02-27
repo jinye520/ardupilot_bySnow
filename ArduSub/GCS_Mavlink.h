@@ -24,8 +24,12 @@ protected:
     MAV_RESULT handle_command_long_packet(const mavlink_command_long_t &packet) override;
 
     // override sending of scaled_pressure3 to send on-board temperature:
+    /*
+    #if CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_CHIBIOS_CUAV_X7
+    #else
     void send_scaled_pressure3() override;
-
+    #endif
+    */
     int32_t global_position_int_alt() const override;
     int32_t global_position_int_relative_alt() const override;
 
