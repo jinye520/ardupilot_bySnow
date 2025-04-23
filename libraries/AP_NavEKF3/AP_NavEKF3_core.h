@@ -60,6 +60,7 @@
 
 // mag fusion final reset altitude (using NED frame so altitude is negative)
 #define EKF3_MAG_FINAL_RESET_ALT 2.5f
+#define EKF3_MAG_FINAL_RESET_ALT_SUB 0.5f
 
 // learning rate for mag biases when using GPS yaw
 #define EK3_GPS_MAG_LEARN_RATE 0.005f
@@ -234,6 +235,9 @@ public:
     // The altitude element of the location is not used.
     // Returns true if the set was successful
     bool setLatLng(const Location &loc, float posAccuracy, uint32_t timestamp_ms);
+
+    // Popoluates the WMM data structure with the field at the given location
+    void setEarthFieldFromLocation(const Location &loc);
 
     // return estimated height above ground level
     // return false if ground height is not being estimated.
