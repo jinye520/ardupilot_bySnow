@@ -165,6 +165,8 @@ protected:
     AP_Float            _throttle_hover;        // estimated throttle required to hover throttle in the range 0 ~ 1
     AP_Int8             _throttle_hover_learn;  // enable/disabled hover thrust learning
     AP_Int8             _disarm_disable_pwm;    // disable PWM output while disarmed
+    AP_Int16            _pwm_min_id[AP_MOTORS_MAX_NUM_MOTORS];     // minimum PWM value that will ever be output to the motors (if 0, vehicle's throttle input channel's min pwm used)
+    AP_Int16            _pwm_max_id[AP_MOTORS_MAX_NUM_MOTORS];     // maximum PWM value that will ever be output to the motors (if 0, vehicle's throttle input channel's max pwm used)
 
     // Maximum lean angle of yaw servo in degrees. This is specific to tricopter
     AP_Float            _yaw_servo_angle_max_deg;

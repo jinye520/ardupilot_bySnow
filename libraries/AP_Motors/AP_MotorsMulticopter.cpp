@@ -231,6 +231,133 @@ const AP_Param::GroupInfo AP_MotorsMulticopter::var_info[] = {
     // @User: Advanced
     AP_GROUPINFO("SPOOL_TIM_DN", 44, AP_MotorsMulticopter, _spool_down_time, 0),
 
+    // @Param: PWM_MIN
+    // @DisplayName: PWM output minimum
+    // @Description: This sets the min PWM output value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MIN_0", 45, AP_MotorsMulticopter, _pwm_min_id[0], 1000),
+
+    // @Param: PWM_MAX
+    // @DisplayName: PWM output maximum
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MAX_0", 46, AP_MotorsMulticopter, _pwm_max_id[0], 2000),
+    
+    // @Param: PWM_MIN
+    // @DisplayName: PWM output minimum
+    // @Description: This sets the min PWM output value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MIN_1", 47, AP_MotorsMulticopter, _pwm_min_id[1], 1000),
+
+    // @Param: PWM_MAX
+    // @DisplayName: PWM output maximum
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MAX_1", 48, AP_MotorsMulticopter, _pwm_max_id[1], 2000),
+    
+    // @Param: PWM_MIN
+    // @DisplayName: PWM output minimum
+    // @Description: This sets the min PWM output value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MIN_2", 49, AP_MotorsMulticopter, _pwm_min_id[2], 1000),
+
+    // @Param: PWM_MAX
+    // @DisplayName: PWM output maximum
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MAX_2", 50, AP_MotorsMulticopter, _pwm_max_id[2], 2000),
+    
+    // @Param: PWM_MIN
+    // @DisplayName: PWM output minimum
+    // @Description: This sets the min PWM output value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MIN_3", 51, AP_MotorsMulticopter, _pwm_min_id[3], 1000),
+
+    // @Param: PWM_MAX
+    // @DisplayName: PWM output maximum
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MAX_3", 52, AP_MotorsMulticopter, _pwm_max_id[3], 2000),
+    
+    // @Param: PWM_MIN
+    // @DisplayName: PWM output minimum
+    // @Description: This sets the min PWM output value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MIN_4", 53, AP_MotorsMulticopter, _pwm_min_id[4], 1000),
+
+    // @Param: PWM_MAX
+    // @DisplayName: PWM output maximum
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MAX_4", 54, AP_MotorsMulticopter, _pwm_max_id[4], 2000),
+    
+    // @Param: PWM_MIN
+    // @DisplayName: PWM output minimum
+    // @Description: This sets the min PWM output value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MIN_5", 55, AP_MotorsMulticopter, _pwm_min_id[5], 1000),
+
+    // @Param: PWM_MAX
+    // @DisplayName: PWM output maximum
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MAX_5", 56, AP_MotorsMulticopter, _pwm_max_id[5], 2000),
+    
+    // @Param: PWM_MIN
+    // @DisplayName: PWM output minimum
+    // @Description: This sets the min PWM output value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MIN_6", 57, AP_MotorsMulticopter, _pwm_min_id[6], 1000),
+
+    // @Param: PWM_MAX
+    // @DisplayName: PWM output maximum
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MAX_6", 58, AP_MotorsMulticopter, _pwm_max_id[6], 2000),
+    
+    // @Param: PWM_MIN
+    // @DisplayName: PWM output minimum
+    // @Description: This sets the min PWM output value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MIN_7", 59, AP_MotorsMulticopter, _pwm_min_id[7], 1000),
+
+    // @Param: PWM_MAX
+    // @DisplayName: PWM output maximum
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_MAX_7", 60, AP_MotorsMulticopter, _pwm_max_id[7], 2000),
     AP_GROUPEND
 };
 
