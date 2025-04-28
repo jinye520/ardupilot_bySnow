@@ -69,7 +69,7 @@ public:
     // get minimum or maximum pwm value that can be output to motors
     int16_t             get_pwm_output_min() const { return _pwm_min; }
     int16_t             get_pwm_output_max() const { return _pwm_max; }
-    
+    int16_t             get_pwm_output_trim(int8_t motorid)  const { return _pwm_trim_id[motorid]; }
     // parameter check for MOT_PWM_MIN/MAX, returns true if parameters are valid
     bool check_mot_pwm_params() const;
 
@@ -122,7 +122,9 @@ protected:
     virtual float       get_current_limit_max_throttle();
 
     // convert actuator output (0~1) range to pwm range
-    int16_t             output_to_pwm(float _actuator_output);
+//    int16_t             output_to_pwm(float actuator);
+
+    int16_t             output_to_pwm(float actuator,int8_t motorid);
 
     // adds slew rate limiting to actuator output if MOT_SLEW_TIME > 0 and not shutdown
     void                set_actuator_with_slew(float& actuator_output, float input);
@@ -167,7 +169,8 @@ protected:
     AP_Int8             _disarm_disable_pwm;    // disable PWM output while disarmed
     AP_Int16            _pwm_min_id[AP_MOTORS_MAX_NUM_MOTORS];     // minimum PWM value that will ever be output to the motors (if 0, vehicle's throttle input channel's min pwm used)
     AP_Int16            _pwm_max_id[AP_MOTORS_MAX_NUM_MOTORS];     // maximum PWM value that will ever be output to the motors (if 0, vehicle's throttle input channel's max pwm used)
-    
+    AP_Int16            _pwm_trim_id[AP_MOTORS_MAX_NUM_MOTORS];    // maximum PWM value that will ever be output to the motors (if 0, vehicle's throttle input channel's max pwm used)
+
     // Maximum lean angle of yaw servo in degrees. This is specific to tricopter
     AP_Float            _yaw_servo_angle_max_deg;
 

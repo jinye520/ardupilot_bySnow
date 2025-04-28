@@ -358,6 +358,70 @@ const AP_Param::GroupInfo AP_MotorsMulticopter::var_info[] = {
     // @Range: 0 2000
     // @User: Advanced
     AP_GROUPINFO("PWM_MAX_7", 60, AP_MotorsMulticopter, _pwm_max_id[7], 2000),
+
+    // @Param: PWM_TRIM
+    // @DisplayName: PWM output trim
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_TRIM_0", 61, AP_MotorsMulticopter, _pwm_trim_id[0], 1500),
+
+    // @Param: PWM_TRIM
+    // @DisplayName: PWM output trim
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_TRIM_1", 62, AP_MotorsMulticopter, _pwm_trim_id[1], 1500),
+
+    // @Param: PWM_TRIM
+    // @DisplayName: PWM output trim
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_TRIM_2", 63, AP_MotorsMulticopter, _pwm_trim_id[2], 1500),
+
+    // @Param: PWM_TRIM
+    // @DisplayName: PWM output trim
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_TRIM_3", 64, AP_MotorsMulticopter, _pwm_trim_id[3], 1500),
+
+    // @Param: PWM_TRIM
+    // @DisplayName: PWM output trim
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_TRIM_4", 65, AP_MotorsMulticopter, _pwm_trim_id[4], 1500),
+
+    // @Param: PWM_TRIM
+    // @DisplayName: PWM output trim
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_TRIM_5", 66, AP_MotorsMulticopter, _pwm_trim_id[5], 1500),
+
+    // @Param: PWM_TRIM
+    // @DisplayName: PWM output trim
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_TRIM_6", 67, AP_MotorsMulticopter, _pwm_trim_id[6], 1500),
+
+    // @Param: PWM_TRIM
+    // @DisplayName: PWM output trim
+    // @Description: This sets the max PWM value in microseconds that will ever be output to the motors
+    // @Units: PWM
+    // @Range: 0 2000
+    // @User: Advanced
+    AP_GROUPINFO("PWM_TRIM_7", 68, AP_MotorsMulticopter, _pwm_trim_id[7], 1500),
     AP_GROUPEND
 };
 
@@ -524,6 +588,31 @@ void AP_MotorsMulticopter::Log_Write()
 #endif
 
 // convert actuator output (0~1) range to pwm range
+
+int16_t AP_MotorsMulticopter::output_to_pwm(float actuator,int8_t motorid)
+{
+    float pwm_output;
+    if (_spool_state == SpoolState::SHUT_DOWN) {
+        // in shutdown mode, use PWM 0 or minimum PWM
+        if (_disarm_disable_pwm && !armed()) {
+            pwm_output = 0;
+        } else {
+            pwm_output = get_pwm_output_min();
+        }
+    } else {
+        // in all other spool modes, covert to desired PWM
+        //pwm_output = get_pwm_output_min() + (get_pwm_output_max() - get_pwm_output_min()) * actuator;
+        pwm_output = (get_pwm_output_trim(motorid) - 1000) + (2000 - get_pwm_output_trim(motorid)) * actuator + (get_pwm_output_trim(motorid) - 500);
+
+    }
+
+    return pwm_output;
+}
+
+
+// convert actuator output (0~1) range to pwm range
+
+/*
 int16_t AP_MotorsMulticopter::output_to_pwm(float actuator)
 {
     float pwm_output;
@@ -537,10 +626,12 @@ int16_t AP_MotorsMulticopter::output_to_pwm(float actuator)
     } else {
         // in all other spool modes, covert to desired PWM
         pwm_output = get_pwm_output_min() + (get_pwm_output_max() - get_pwm_output_min()) * actuator;
+
     }
 
     return pwm_output;
 }
+*/
 
 // adds slew rate limiting to actuator output
 void AP_MotorsMulticopter::set_actuator_with_slew(float& actuator_output, float input)
