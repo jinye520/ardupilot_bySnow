@@ -267,28 +267,28 @@ void AP_Motors6DOF::output_to_motors()
         for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
             if (motor_enabled[i]) {
                 if(i == 0){
-                    motor_out[i] =  1500 + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - 1500) : (1500 - _pwm_min_id[i]));
+                    motor_out[i] =  _pwm_trim_id[i] + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - _pwm_trim_id[i]) : (_pwm_trim_id[i] - _pwm_min_id[i]));
                 }
                 if(i == 1){
-                    motor_out[i] =  1500 + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - 1500) : (1500 - _pwm_min_id[i]));
+                    motor_out[i] =  _pwm_trim_id[i] + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - _pwm_trim_id[i]) : (_pwm_trim_id[i] - _pwm_min_id[i]));
                 }
                 if(i == 2){
-                    motor_out[i] =  1500 + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - 1500) : (1500 - _pwm_min_id[i]));
+                    motor_out[i] =  _pwm_trim_id[i] + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - _pwm_trim_id[i]) : (_pwm_trim_id[i] - _pwm_min_id[i]));
                 }
                 if(i == 3){
-                    motor_out[i] =  1500 + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - 1500) : (1500 - _pwm_min_id[i]));
+                    motor_out[i] =  _pwm_trim_id[i] + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - _pwm_trim_id[i]) : (_pwm_trim_id[i] - _pwm_min_id[i]));
                 }
                 if(i == 4){
-                    motor_out[i] =  1500 + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - 1500) : (1500 - _pwm_min_id[i]));
+                    motor_out[i] =  _pwm_trim_id[i] + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - _pwm_trim_id[i]) : (_pwm_trim_id[i] - _pwm_min_id[i]));
                 }
                 if(i == 5){
-                    motor_out[i] =  1500 + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - 1500) : (1500 - _pwm_min_id[i]));
+                    motor_out[i] =  _pwm_trim_id[i] + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - _pwm_trim_id[i]) : (_pwm_trim_id[i] - _pwm_min_id[i]));
                 }
                 if(i == 6){
-                    motor_out[i] =  1500 + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - 1500) : (1500 - _pwm_min_id[i]));
+                    motor_out[i] =  _pwm_trim_id[i] + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - _pwm_trim_id[i]) : (_pwm_trim_id[i] - _pwm_min_id[i]));
                 }
                 if(i == 7){
-                    motor_out[i] =  1500 + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - 1500) : (1500 - _pwm_min_id[i]));
+                    motor_out[i] =  _pwm_trim_id[i] + _thrust_rpyt_out[i] * (_thrust_rpyt_out[i] > 0 ? (_pwm_max_id[i] - _pwm_trim_id[i]) : (_pwm_trim_id[i] - _pwm_min_id[i]));
                 }
 //                motor_out[i] = calc_thrust_to_pwm(_thrust_rpyt_out[i]);
             }

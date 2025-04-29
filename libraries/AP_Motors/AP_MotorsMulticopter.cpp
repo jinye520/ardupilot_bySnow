@@ -588,31 +588,6 @@ void AP_MotorsMulticopter::Log_Write()
 #endif
 
 // convert actuator output (0~1) range to pwm range
-
-int16_t AP_MotorsMulticopter::output_to_pwm(float actuator,int8_t motorid)
-{
-    float pwm_output;
-    if (_spool_state == SpoolState::SHUT_DOWN) {
-        // in shutdown mode, use PWM 0 or minimum PWM
-        if (_disarm_disable_pwm && !armed()) {
-            pwm_output = 0;
-        } else {
-            pwm_output = get_pwm_output_min();
-        }
-    } else {
-        // in all other spool modes, covert to desired PWM
-        //pwm_output = get_pwm_output_min() + (get_pwm_output_max() - get_pwm_output_min()) * actuator;
-        pwm_output = (get_pwm_output_trim(motorid) - 1000) + (2000 - get_pwm_output_trim(motorid)) * actuator + (get_pwm_output_trim(motorid) - 500);
-
-    }
-
-    return pwm_output;
-}
-
-
-// convert actuator output (0~1) range to pwm range
-
-/*
 int16_t AP_MotorsMulticopter::output_to_pwm(float actuator)
 {
     float pwm_output;
@@ -631,7 +606,6 @@ int16_t AP_MotorsMulticopter::output_to_pwm(float actuator)
 
     return pwm_output;
 }
-*/
 
 // adds slew rate limiting to actuator output
 void AP_MotorsMulticopter::set_actuator_with_slew(float& actuator_output, float input)
@@ -686,10 +660,12 @@ void AP_MotorsMulticopter::update_throttle_range()
 {
     // if all outputs are digital adjust the range. We also do this for type PWM_RANGE, as those use the
     // scaled output, which is then mapped to PWM via the SRV_Channel library
+/*
     if (SRV_Channels::have_digital_outputs(get_motor_mask()) || (_pwm_type == PWM_TYPE_PWM_RANGE) || (_pwm_type == PWM_TYPE_PWM_ANGLE)) {
         _pwm_min.set_and_default(1000);
         _pwm_max.set_and_default(2000);
     }
+*/
 
     hal.rcout->set_esc_scaling(get_pwm_output_min(), get_pwm_output_max());
 }

@@ -69,7 +69,7 @@ public:
     // get minimum or maximum pwm value that can be output to motors
     int16_t             get_pwm_output_min() const { return _pwm_min; }
     int16_t             get_pwm_output_max() const { return _pwm_max; }
-    int16_t             get_pwm_output_trim(int8_t motorid)  const { return _pwm_trim_id[motorid]; }
+    
     // parameter check for MOT_PWM_MIN/MAX, returns true if parameters are valid
     bool check_mot_pwm_params() const;
 
@@ -122,9 +122,7 @@ protected:
     virtual float       get_current_limit_max_throttle();
 
     // convert actuator output (0~1) range to pwm range
-//    int16_t             output_to_pwm(float actuator);
-
-    int16_t             output_to_pwm(float actuator,int8_t motorid);
+    int16_t             output_to_pwm(float actuator);
 
     // adds slew rate limiting to actuator output if MOT_SLEW_TIME > 0 and not shutdown
     void                set_actuator_with_slew(float& actuator_output, float input);
